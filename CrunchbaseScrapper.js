@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Make Custom Webhook Button
+// @name         CrunchbaseScrapper
 // @version      0.1
 // @description  This adds a button onto all web pages, when clicked, sends the current page to a Custom Webhook trigger on Make
-// @author       @samliew
+// @author       @mithilesh
 // @include      https://www.crunchbase.com/organization/*
 // @connect      *
 // @match
@@ -10,6 +10,8 @@
 
 
 // ==/UserScript==
+
+// Date: 22 April 2025
 
 (function() {
   'use strict';
