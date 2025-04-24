@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         TracxnScrapper
-// @version      0.2
+// @version      0.3
 // @description  This adds a button onto all web pages, when clicked, sends the current page to a Custom Webhook trigger on Make
 // @author       @mithilesh
 // @include      https://tracxn.com/d/companies/*
@@ -61,7 +61,7 @@ function extractAndCopyData() {
         console.log('Total Funding:', TotalFunding);
         console.log('Latest Funding Round:', LatestFundingRound);
         console.log('Annual Revenue:', AnnualRevenue);
-        console.log("Version 0.2");
+        console.log("testing Version 0.3");
 
 
         // Format the data for Excel (tab-separated values)
