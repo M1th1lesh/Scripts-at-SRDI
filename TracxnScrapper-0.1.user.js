@@ -7,7 +7,9 @@
 // @connect      *
 // @match
 // @grant        GM_xmlhttpRequest
+// @updateURL     https://github.com/M1th1lesh/Scripts-at-SRDI/blob/main/TracxnScrapper-0.1.user.j
 // @downloadURL   https://github.com/M1th1lesh/Scripts-at-SRDI/blob/main/TracxnScrapper-0.1.user.js
+
 
 
 
