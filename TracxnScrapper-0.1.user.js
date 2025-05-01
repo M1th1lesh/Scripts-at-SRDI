@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         TracxnScrapper
-// @version      0.3
+// @version      0.2
 // @description  This adds a button onto all web pages, when clicked, sends the current page to a Custom Webhook trigger on Make
 // @author       @mithilesh
 // @include      https://tracxn.com/d/companies/*
@@ -9,8 +9,6 @@
 // @grant        GM_xmlhttpRequest
 // @updateURL     https://github.com/M1th1lesh/Scripts-at-SRDI/blob/main/TracxnScrapper-0.1.user.j
 // @downloadURL   https://github.com/M1th1lesh/Scripts-at-SRDI/blob/main/TracxnScrapper-0.1.user.js
-
-
 
 
 // ==/UserScript==
@@ -40,16 +38,49 @@
         extractAndCopyData();
 function extractAndCopyData() {
         // Selectors for the required data
-        const ProfitSelector = document.getElementsByClassName("txn--text-color-mine-shaft txn--text-decoration-none");
+        //const ProfitSelector = document.getElementsByClassName("txn--text-color-mine-shaft txn--text-decoration-none");
+        const KeyMetricsTitleSelector = document.getElementsByClassName("txn--font-14 txn--font-medium");
         const KeyMetricsSelector = document.getElementsByClassName("txn--font-14 txn--margin-bottom-12");
-        const WebsiteSelector = document.getElementsByClassName("txn--seo-companies__details__value")
+        //const WebsiteSelector = document.getElementsByClassName("txn--seo-companies__details__value")
 
         // Extract the data
-        const Website = "https://"+WebsiteSelector[0].textContent || 'Not found';
-        const Stage = KeyMetricsSelector[2].textContent || 'Not found';
-        const TotalFunding = KeyMetricsSelector[3].textContent || 'Not found';
-        const LatestFundingRound = KeyMetricsSelector[4].textContent || 'Not found';
-        const AnnualRevenue = KeyMetricsSelector[8].textContent || 'Not found';
+        var Location="Not found"
+        var Year="Not found"
+        var Age="Not found"
+        var Stage="Not found"
+        var AnnualRevenue="Not found"
+        var TotalFunding="Not found"
+        var LatestFundingRound="Not found"
+
+        //const Website = "https://"+WebsiteSelector[0].textContent || 'Not found';
+       
+
+
+        for (let i = 0; i < KeyMetricsTitleSelector.length; i++) {
+             if (KeyMetricsTitleSelector[i].textContent=="Founded Year"){
+                  Year = KeyMetricsSelector[i].textContent || 'Not found';
+                  Age = new Date().getFullYear() - KeyMetricsSelector[i].textContent || 'Not found';
+             }
+            if (KeyMetricsTitleSelector[i].textContent=="Location"){
+                  Location = KeyMetricsSelector[i].textContent || 'Not found';
+             }
+            if (KeyMetricsTitleSelector[i].textContent=="Stage"){
+                  Stage = KeyMetricsSelector[i].textContent || 'Not found';
+             }
+            if (KeyMetricsTitleSelector[i].textContent=="Total Funding"){
+                  TotalFunding = KeyMetricsSelector[i].textContent || 'Not found';
+             }
+            if (KeyMetricsTitleSelector[i].textContent=="Latest Funding Round"){
+                  LatestFundingRound = KeyMetricsSelector[i].textContent || 'Not found';
+             }
+            if (KeyMetricsTitleSelector[i].textContent=="Annual Revenue"){
+                  AnnualRevenue = KeyMetricsSelector[i].textContent || 'Not found';
+             }
+
+
+
+}
+
 
 
         // const growthScore = ScoreSelector[2].textContent || 'Not found';
@@ -61,11 +92,14 @@ function extractAndCopyData() {
         console.log('Total Funding:', TotalFunding);
         console.log('Latest Funding Round:', LatestFundingRound);
         console.log('Annual Revenue:', AnnualRevenue);
-        console.log("testing Version 0.3");
+       // console.log('Revenue($):', Revenue);
+        console.log('Age:', Age);
+
+
 
 
         // Format the data for Excel (tab-separated values)
-       const data = `${Stage}\t${AnnualRevenue}\t${TotalFunding}\t${LatestFundingRound}`;
+       const data = `${Location}\t${Year}\t${Age}\t${Stage}\t\t\t${AnnualRevenue}\t${TotalFunding}\t${LatestFundingRound}`;
 
 
         // Copy the data to the clipboard
